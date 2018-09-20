@@ -1,0 +1,31 @@
+﻿
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Welcome Valued Employee</h2>
+
+<hr />
+<!--View All workorders-->
+<!--list of compounds-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            @Html.ActionLink("Compound List", "LabDashboard", "Lab", null, new { @class = "btn btn-lg btn-primary" })
+        </div>
+        <div class="col-md-3">
+            @Html.ActionLink("Unscheduled Assays", "LabAssaySchedule", "Lab", null, new { @class = "btn btn-lg btn-primary" })
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-3">
+            @Html.ActionLink("Assay Quotes", "LabAssayQuote", "Lab", null, new { @class = "btn btn-lg btn-primary" })
+        </div>
+        <div class="col-md-3">
+            @Html.ActionLink("Test List", "LabTestList", "Lab", null, new { @class = "btn btn-lg btn-primary" })
+        </div>
+    </div>
+</div>

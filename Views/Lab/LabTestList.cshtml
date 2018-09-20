@@ -1,0 +1,123 @@
+﻿@model IEnumerable<intex.Models.LabTestInfo>
+
+@{
+    ViewBag.Title = "Lab Test List";
+}
+
+<h2>Lab Test List</h2>
+
+<table class="table">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.CompoundName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssayName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LTNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SequenceCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SampleID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestInstanceID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestStartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestEndTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClearResult)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestResult)
+        </th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    if (item.TestStartTime == null)
+    {
+        <tr class="active">
+            <td>
+                @Html.DisplayFor(modelItem => item.CompoundName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssayName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LTNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SequenceCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SampleID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TestID)
+            </td>
+            <td>
+                <a href="@Url.Action("ScheduleAssay")">
+                    Schedule Test
+                </a>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    }
+    else
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompoundName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AssayName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LTNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SequenceCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SampleID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TestID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TestInstanceID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TestStartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TestEndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ClearResult)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TestResult)
+            </td>
+        </tr>
+    }
+}
+
+</table>
+<p>
+    @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-primary" })
+</p>

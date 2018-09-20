@@ -1,0 +1,55 @@
+﻿@model IEnumerable<intex.Models.TestInfo>
+
+@{
+    ViewBag.Title = "SeeTestInfo";
+}
+
+<h2>Test information</h2>
+
+<h4 class="text-muted">@ViewBag.Name / @ViewBag.LT</h4>
+
+<table class="table">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.TestInstanceID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestStartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestEndTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ClearResult)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestResult)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TestInstanceID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TestStartTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TestEndTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClearResult)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TestResult)
+        </td>
+    </tr>
+}
+
+</table>
+
+<p>
+    @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-primary" })
+</p>

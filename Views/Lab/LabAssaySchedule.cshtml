@@ -1,0 +1,71 @@
+﻿@model IEnumerable<intex.Models.LabAssaySchedule>
+
+@{
+    ViewBag.Title = "Lab Assay Schedule";
+}
+
+<h2>Lab Assay Schedule</h2>
+
+
+<table class="table">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.WorkOrderID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssayName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssayDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ScheduledDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompletionDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstimatedTime)
+        </th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkOrderID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssayName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssayDescription)
+        </td>
+        @if (item.ScheduledDate == null)
+        {
+            <td>
+                <a href="@Url.Action("ScheduleAssay")">
+                    Schedule Assay
+                </a>
+            </td>
+            <td></td>
+        }
+        else
+        {
+            <td>
+                @Html.DisplayFor(modelItem => item.ScheduledDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompletionDate)
+            </td>
+        }
+        <td>
+            @Html.DisplayFor(modelItem => item.EstimatedTime)
+        </td>       
+    </tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("Back to Main View", "Index", null, new { @class = "btn btn-primary" })
+</p>

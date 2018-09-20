@@ -1,0 +1,173 @@
+﻿@model IEnumerable<intex.Models.Manager>
+
+@{
+    ViewBag.Title = "Manager Dashboard";
+
+}
+<link href="~/Content/Management.css" rel="stylesheet" />
+@*<h2>Index</h2>*@
+@**@
+@*<table class="table">*@
+@*    <tr>*@
+@*        <th>*@
+@*            Revenue Total*@
+@*        </th>*@
+@*        <td>Total Discounts accepted</td>*@
+@*        <td>Average Quoted Price</td>*@
+@*        <td>Average Total Price</td>*@
+@*    </tr>*@
+
+@*@foreach (var item in Model) {*@
+@*    <tr>*@
+@*        <td>*@
+@*            @Html.DisplayFor(model => item.sumInvoice)*@
+@**@
+@*        </td>*@
+@*        <td>@Html.DisplayFor(model => item.sumDiscount)*@
+@*</td>*@
+@*        <td>@Html.DisplayFor(model => item.avgQuotedPrice)*@
+@*</td>*@
+@*        <td>@Html.DisplayFor(Model => item.avgTotalPrice)*@
+@*</td>*@
+@*        <td>*@
+@*            @Html.ActionLink("Details", "Details", new { id=item.sumInvoice }) |*@
+@*        </td>*@
+@*    </tr>*@
+@*}*@
+
+@*</table>*@
+<br/><br/>
+@foreach (var item in Model)
+{
+    <div class="wrapper">
+        <h1>Management Dashboard</h1>
+        <br />
+        <div class="pie-charts">
+            <div class="pieID--Revenue pie-chart--wrapper">
+                <h2>Revenue</h2>
+                <div class="pie-chart">
+                    <div class="pie-chart__pie"></div>
+                    <ul class="pie-chart__legend">
+                        <li><em>Total Invoice Revenue</em><span>@Html.DisplayFor(model => item.sumInvoice)</span></li>
+                        <li><em>Discounts Applied</em><span>@Html.DisplayFor(model => item.sumDiscount)</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pieID--categories pie-chart--wrapper">
+                <h2>Quoted VS Actual Price</h2>
+                <div class="pie-chart">
+                    <div class="pie-chart__pie"></div>
+                    <ul class="pie-chart__legend">
+                        <li><em>Average Quoted Price</em><span>@Html.DisplayFor(model => item.avgQuotedPrice)</span></li>
+                        <li><em>Average Actual Price</em><span>@Html.DisplayFor(Model => item.avgTotalPrice)</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pieID--operations pie-chart--wrapper">
+                <h2>Actual Time Per Assay</h2>
+                <div class="pie-chart">
+                    <div class="pie-chart__pie"></div>
+                    <ul class="pie-chart__legend">
+                        <li><em>BP</em><span>8</span></li>
+                        <li><em>CS</em><span>4</span></li>
+                        <li><em>DS</em><span>3</span></li>
+                        <li><em>IS</em><span>7</span></li>
+                        <li><em>PF</em><span>2</span></li>
+                        <li><em>PS</em><span>8</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+
+    function sliceSize(dataNum, dataTotal) {
+        return (dataNum / dataTotal) * 360;
+    }
+
+    function addSlice(id, sliceSize, pieElement, offset, sliceID, color) {
+        $(pieElement).append("<div class='slice " + sliceID + "'><span></span></div>");
+        var offset = offset - 1;
+        var sizeRotation = -179 + sliceSize;
+
+        $(id + " ." + sliceID).css({
+            "transform": "rotate(" + offset + "deg) translate3d(0,0,0)"
+        });
+
+        $(id + " ." + sliceID + " span").css({
+            "transform": "rotate(" + sizeRotation + "deg) translate3d(0,0,0)",
+            "background-color": color
+        });
+    }
+
+    function iterateSlices(id, sliceSize, pieElement, offset, dataCount, sliceCount, color) {
+        var
+            maxSize = 179,
+            sliceID = "s" + dataCount + "-" + sliceCount;
+
+        if (sliceSize <= maxSize) {
+            addSlice(id, sliceSize, pieElement, offset, sliceID, color);
+        } else {
+            addSlice(id, maxSize, pieElement, offset, sliceID, color);
+            iterateSlices(id, sliceSize - maxSize, pieElement, offset + maxSize, dataCount, sliceCount + 1, color);
+        }
+    }
+
+    function createPie(id) {
+        var
+            listData = [],
+            listTotal = 0,
+            offset = 0,
+            i = 0,
+            pieElement = id + " .pie-chart__pie"
+        dataElement = id + " .pie-chart__legend"
+
+        color = [
+            "#116381",
+            "#328FB1",
+            "#EB2D2D",
+            "#49A078"
+        ];
+
+        color = shuffle(color);
+
+        $(dataElement + " span").each(function () {
+            listData.push(Number($(this).html()));
+        });
+
+        for (i = 0; i < listData.length; i++) {
+            listTotal += listData[i];
+        }
+
+        for (i = 0; i < listData.length; i++) {
+            var size = sliceSize(listData[i], listTotal);
+            iterateSlices(id, size, pieElement, offset, i, 0, color[i]);
+            $(dataElement + " li:nth-child(" + (i + 1) + ")").css("border-color", color[i]);
+            offset += size;
+        }
+    }
+
+    function shuffle(a) {
+        var j, x, i;
+        for (i = a.length; i; i--) {
+            j = Math.floor(Math.random() * i);
+            x = a[i - 1];
+            a[i - 1] = a[j];
+            a[j] = x;
+        }
+
+        return a;
+    }
+
+    function createPieCharts() {
+        createPie('.pieID--Revenue');
+        createPie('.pieID--categories');
+        createPie('.pieID--operations');
+    }
+
+    createPieCharts();
+
+</script>

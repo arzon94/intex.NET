@@ -1,0 +1,47 @@
+﻿@model IEnumerable<intex.Models.OrderedAssayInfo>
+
+@{
+    ViewBag.Title = "SeeOrderedAssays";
+}
+
+<h2>Ordered Assays</h2>
+
+<table class="table">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.WorkOrderID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompoundName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssayName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkOrderID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompoundName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssayName)
+        </td>
+        <td>
+            @if (ViewBag.Date != null)
+            {
+                @Html.ActionLink("Test Details >>", "SeeTestInfo", "Client", new { name = item.AssayName, LT = item.LTNumber }, null)
+            }
+        </td>
+    </tr>
+}
+
+</table>
+
+<p>
+    @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-primary" })
+</p>

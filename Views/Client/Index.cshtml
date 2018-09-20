@@ -1,0 +1,31 @@
+﻿@model intex.Models.Customer
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Customer Portal</h2>
+
+<h3>Welcome @Model.CustFirstName</h3>
+
+<hr />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            @Html.ActionLink("See Work Orders", "SeeWorkOrders", "Client", null, new { @class = "btn btn-lg btn-primary" })
+        </div>
+        <div class="col-md-3">
+            @Html.ActionLink("Submit New Work Order", "StartWorkOrder", "Client", null, new { @class = "btn btn-lg btn-primary" })
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-3">
+            @Html.ActionLink("Customer Service", "CustomerService", "Client", null, new { @class = "btn btn-lg btn-primary" })
+        </div>
+        <div class="col-md-3">
+            @Html.ActionLink("See Assay Price Quotes", "ShowQuotes", "Client", null, new { @class = "btn btn-lg btn-primary" })
+        </div>
+    </div>
+</div>

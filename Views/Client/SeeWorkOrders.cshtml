@@ -1,0 +1,65 @@
+﻿@model IEnumerable<intex.Models.WorkOrderInfo>
+
+@{
+    ViewBag.Title = "SeeWorkOrders";
+}
+
+<h2>Work Order Information</h2>
+
+<table class="table">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.WorkOrderID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompoundName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CompleteDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StatusDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.WorkOrderID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompoundName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CompleteDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StatusDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalPrice)
+        </td>
+        <td>
+            @if (item.LTNumber != null)
+            {
+                @Html.ActionLink("Assay Details >>", "SeeOrderedAssays", "Client", new { LT = item.LTNumber , day = item.CompleteDate}, null)
+            }
+        </td>
+    </tr>
+}
+
+</table>
+
+<p>
+    @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-primary" })
+</p>

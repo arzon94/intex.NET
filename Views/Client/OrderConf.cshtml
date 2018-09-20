@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "OrderConf";
+}
+
+<h2>Order was successful, thanks @ViewBag.Name!</h2>
+
+<hr />
+
+<h4>What Next?</h4>
+<p>
+    Now you just need to send your compound sample to our labs, and you can track the assay testing from there.
+</p>
+<p>
+    For questions concerning this process, visit the <a href=@Url.Action("CustomerSupport", "Client")>customer support</a> page or 
+    <a href=@Url.Action("Contact", "Home")>contact us</a> directly.
+</p>
+
+<br />
+
+@Html.ActionLink("Return to Customer Portal", "Index", "Client", null, new { @class = "btn btn-primary"})

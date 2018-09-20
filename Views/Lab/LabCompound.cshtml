@@ -1,0 +1,141 @@
+﻿@model IEnumerable<intex.Models.LabCompoundInfo>
+
+@{
+    ViewBag.Title = "Lab Compound";
+}
+
+<h2>Lab Compound</h2>
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            @* The compound headers *@
+            <div class="col-md-6">
+                <p>
+                    @Html.DisplayNameFor(model => model.CompoundName)
+                </p>
+                <p>
+                    @Html.DisplayNameFor(model => model.CompoundDescription)
+                </p>
+                <p>
+                    @Html.DisplayNameFor(model => model.AppearanceDescription)
+                </p>
+                <p>
+                    @Html.DisplayNameFor(model => model.MolecularMass)
+                </p>
+                <p>
+                    @Html.DisplayNameFor(model => model.CombinedWeight)
+                </p>
+                <p>
+                    @Html.DisplayNameFor(model => model.MaxToleratedDose)
+                </p>
+            </div>
+
+            @* The first dataset from the model about the compound *@
+            <div class="col-md-6">
+                @foreach (var item in Model.Take(1))
+                {
+                    <p>
+                        @Html.DisplayFor(modelItem => item.CompoundName)
+                    </p>
+                    <p>
+                        @Html.DisplayFor(modelItem => item.CompoundDescription)
+                    </p>
+                    <p>
+                        @Html.DisplayFor(modelItem => item.AppearanceDescription)
+                    </p>
+                    <p>
+                        @Html.DisplayFor(modelItem => item.MolecularMass)
+                    </p>
+                    <p>
+                        @Html.DisplayFor(modelItem => item.CombinedWeight)
+                    </p>
+                    <p>
+                        @Html.DisplayFor(modelItem => item.MaxToleratedDose)
+                    </p>
+                }
+            </div>
+        </div>
+        @* A list of all of the assays in the compound *@
+        <div class="col-md-8">
+            <table class="table">
+                
+                    <tr class="active">
+
+                        <th>
+                            @Html.DisplayNameFor(model => model.AssayName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AssayDescription)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.ScheduledDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CompletionDate)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.EstimatedTime)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AssayQuote)
+                        </th>
+                        <th></th>
+                    </tr>
+                   
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AssayName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AssayDescription)
+                            </td>
+                            @if (item.ScheduledDate == null)
+                            {
+                            <td>
+                                <a href="@Url.Action("ScheduleAssay")">
+                                    Schedule Assay
+                                </a>
+                            </td>
+                            <td>
+
+                            </td>
+                            }
+                            else
+                            {
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ScheduledDate)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CompletionDate)
+                            </td>
+                            }
+                            <td>
+                                @Html.DisplayFor(modelItem => item.EstimatedTime)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.AssayQuote)
+                            </td>
+                            <td>
+                                <a href="@Url.Action("LabTest", new { LT = item.LTNumber, AN = item.AssayID })">
+                                    Tests
+                                </a>
+                            </td>
+                        </tr>
+                    }
+
+            </table>
+        </div>
+    </div>
+</div>
+<p>
+    @Html.ActionLink("Back to Main View", "Index", null, new { @class = "btn btn-primary" })
+</p>
+<p>
+    @Html.ActionLink("Back to Compound List", "LabDashboard", "Lab", null, new { @class = "btn btn-primary" })
+</p>

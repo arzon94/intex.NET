@@ -1,0 +1,61 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+
+    <div class="col-md-1"></div>
+
+    <div class="col-md-4">
+        <h2>Contact Us</h2>
+
+        <hr style="border-top-color: #116381"/>
+
+        <p>Feel free to reach out to us at anytime, operators are standing by.</p>
+
+        <h3>Call us</h3>
+        <p style="text-indent: 10px;"><span class="glyphicon glyphicon-phone-alt"></span>&nbsp;&nbsp;&nbsp;&nbsp;206-946-7851</p>
+
+        <h3>Email us</h3>
+        <p style="text-indent: 10px;"><span class="glyphicon glyphicon-envelope"></span>&nbsp;&nbsp;&nbsp;&nbsp;contact@nwlabs.com</p>
+
+    </div>
+
+    <div class="col-md-1"></div>
+
+    <div class="col-md-4">
+        <!--lil email form-->
+        <h2>Questions?</h2>
+
+        <hr style="border-top-color: #116381" />
+
+        <p>If you have a specific question, enter your name, email, and question below, and we'll get back to you.</p>
+
+        @using (Html.BeginForm("Email", "Home", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <div class="form-group" style="margin-left: 10px;">
+                    Name: <input id="name" name="name" type="text" />
+                </div>
+
+                <div class="form-group" style="margin-left: 10px;">
+                    Email: <input id="email" name="email" type="text" />
+                </div>
+
+                <div class="form-group" style="margin-left: 10px;">
+                    Question: <br /><textarea id="question" name="question" type="text" rows="4" cols="30"></textarea>
+                </div>
+
+                <div class="form-group" style="margin-left: 10px;">
+                    <div>
+                        <input type="submit" value="Submit" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="col-md-2"></div>
+</div>

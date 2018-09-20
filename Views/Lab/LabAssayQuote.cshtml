@@ -1,0 +1,46 @@
+﻿@model IEnumerable<intex.Models.LabAssayQuotes>
+
+@{
+    ViewBag.Title = "Lab Assay Quote";
+}
+
+<h2>Assay Quotes</h2>
+
+
+<table class="table">
+    <tr class="active">
+        <th>
+            @Html.DisplayNameFor(model => model.AssayName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssayDescription)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EstimatedTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AssayQuote)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssayName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssayDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EstimatedTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AssayQuote)
+        </td>
+    </tr>
+}
+
+</table>
+<p>
+    @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-primary" })
+</p>

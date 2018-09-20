@@ -1,0 +1,82 @@
+﻿/*  Colors
+    #116381 - Blue
+    #328FB1 - Light Blue
+    #1F2421 - Black
+    #EB2D2D - Red
+    #939393 - Gray
+    #49A078 - Green
+*/
+
+/* general styles */
+
+h1 h2 h3 h4 h5 h6 {
+    font-family: 'Playfair Display', serif;
+}
+
+p {
+    font-family: 'Raleway', sans-serif;
+}
+
+/* navbar styles */
+
+.navbar-custom {
+    background-color: #1F2421;
+    border-color: #EB2D2D;
+}
+
+    .navbar-custom .navbar-brand {
+        color: #939393;
+    }
+
+        .navbar-custom .navbar-brand:hover,
+        .navbar-custom .navbar-brand:focus {
+            color: #116381;
+            background-color: transparent;
+        }
+
+    .navbar-custom .navbar-text {
+        color: #939393;
+    }
+
+    .navbar-custom .navbar-nav > li > a {
+        color: #939393;
+    }
+
+        .navbar-custom .navbar-nav > li > a:hover,
+        .navbar-custom .navbar-nav > li > a:focus {
+            color: #116381;
+            background-color: transparent;
+        }
+
+    .navbar-custom .navbar-nav > .active > a,
+    .navbar-custom .navbar-nav > .active > a:hover,
+    .navbar-custom .navbar-nav > .active > a:focus {
+        color: #116381;
+        background-color: transparent;
+    }
+
+/* About Page */
+
+#aboutContent {
+    text-align: center;
+    background-color: #E2E2E2;
+    margin-right: 7%;
+    margin-left: 7%;
+}
+
+#about {
+    text-align: left;
+}
+
+#about p {
+    margin-left: 15%;
+    margin-right: 15%;
+    line-height: 1.5em;
+}
+
+/* footer styles */
+
+.footer-text {
+    margin: auto;
+    color: #DCE1DE;
+}

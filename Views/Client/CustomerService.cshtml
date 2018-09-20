@@ -1,0 +1,88 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Here to Serve You";
+}
+
+<h2>Here To Serve Our Customers</h2>
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="container">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h2 >
+                            New Mobile App
+                        </h2>
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center"><b>Receive Status Updates, View progress of Assays, and view order history from the palm of your hand</b></p>
+
+                        <img src="~/Content/img/mobilepage.png" class="img-responsive"/>
+                    </div>
+                    <div class="panel-footer text-center " ><h4><a href="https://xd.adobe.com/view/c849d99f-cc50-4354-9cb7-46e30dcbe516" class="text-success">Download the App!</a></h4></div>
+                </div>
+            </div>
+            
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div class="container">
+                <div class="panel-group" id="accordion">
+                    <h3>Common Questions</h3>
+
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                                    See Work Orders
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse1" class="panel-collapse collapse in">
+                            <div class="panel-body">
+                                See current and past work orders from the web or from your phone. Check the
+                                <a href=@Url.Action("SeeWorkOrders", "Client")>See Work Orders Page for the full list</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                                    Submit New Work Order
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse2" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Submit New Work Orders from the web or your phone. List the Compound Name, Compound Description, and any special details on the order. After clicking "Submit", additional information for
+                                your order may be added, such as the type of assay requested for the order
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h4 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                                    Other
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapse3" class="panel-collapse collapse">
+                            <div class="panel-body">
+                                Have more questions? visit the
+                                <a href=@Url.Action("Contact", "Home")>Contact Page</a> to contact us directly
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <p>
+                        @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-primary" })
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
